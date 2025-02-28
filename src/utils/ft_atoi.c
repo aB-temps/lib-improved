@@ -6,7 +6,7 @@
 /*   By: abetemps <abetemps@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:39:22 by abetemps          #+#    #+#             */
-/*   Updated: 2025/01/14 16:32:20 by abetemps         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:39:04 by abetemps         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,32 @@ int	ft_atoi(const char *nptr)
 			return (0);
 		if (value >= LONG_MAX && sign > 0)
 			return (-1);
+		i++;
+	}
+	return (((int)value) * sign);
+}
+int	ft_atoi_bis(const char *nptr, int *err)
+{
+	unsigned long long value;
+	int sign;
+	int i;
+
+	value = 0;
+	sign = 1;
+	i = 0;
+	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		value = value * 10 + (nptr[i] - '0');
+		if ((value > INT_MAX && sign < 0) || (value >= INT_MAX && sign > 0))
+			*err = 1;
 		i++;
 	}
 	return (((int)value) * sign);

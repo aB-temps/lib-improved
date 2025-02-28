@@ -6,7 +6,7 @@
 #    By: abetemps <abetemps@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/11 11:53:48 by abetemps          #+#    #+#              #
-#    Updated: 2025/01/20 12:13:50 by abetemps         ###   ########.fr        #
+#    Updated: 2025/01/20 18:59:52 by abetemps         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,7 +106,7 @@ OBJECTS := $(foreach comp, $(COMPONENTS), $(OBJ_$(comp)))
 $(DIR_OBJ):
 	mkdir -p $@
 
-$(DIR_OBJ)/%.o: $(DIR_SRC)%.c $(DIR_INC)
+$(DIR_OBJ)/%.o: $(DIR_SRC)%.c $(DIR_INC)/*
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -I $(DIR_INC) -o $@
 
